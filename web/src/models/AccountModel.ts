@@ -1,5 +1,5 @@
 export interface AccountModel {
-  id: number;
+  id?: number;
   name: string;
   startingBalance: number;
 }

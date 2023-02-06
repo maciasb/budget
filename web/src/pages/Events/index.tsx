@@ -1,4 +1,10 @@
-import { Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+} from "@mui/material";
 import { useState, useEffect } from "react";
 import { EventModel } from "../../models/EventModel";
 import { makeRequest } from "../../utils";

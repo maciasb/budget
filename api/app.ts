@@ -4,6 +4,7 @@ import path from 'path';
 dotenv.config({ path: path.resolve(__dirname, '../config/local.env') });
 
 import express, { Express, Request, Response } from 'express';
+import bodyParser from 'body-parser';
 import cors from 'cors';
 import { AppDataSource } from './src/services/data-source';
 import allRoutes from './routes';
@@ -30,6 +31,7 @@ AppDataSource.initialize()
     .catch((error) => console.log(error))
 
 const app: Express = express();
+app.use(bodyParser.json());
 app.use(cors(corsOptionsDelegate));
 
 const router = express.Router();

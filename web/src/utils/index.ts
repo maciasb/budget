@@ -1,9 +1,19 @@
 export async function makeRequest<T>(
   path: string,
-  args: RequestInit = { method: "GET" }
+  method = "GET",
+  body = ""
 ): Promise<T> {
-  const request = new Request(`${"http://localhost:3001"}${path}`, args);
+  const requestArgs: RequestInit = {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  if (method !== "GET") {
+    requestArgs.body = body;
+  }
+  const request = new Request(`${"http://localhost:3001"}${path}`, requestArgs);
   const response = await fetch(request);
-  const body = await response.json();
-  return body;
+  const data = await response.json();
+  return data;
 }

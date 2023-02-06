@@ -12,4 +12,19 @@ router.get('/accounts', async (req: Request, res: Response) => {
   res.send(accounts);
 });
 
+router.post('/accounts', async (req: Request, res: Response) => {
+  const accountsRepo = AppDataSource.getRepository(AccountEntity);
+  const account = await accountsRepo.save({
+    ...req.body
+  });
+
+  res.send(account);
+});
+
+router.delete('/accounts/:accountId', async (req: Request, res: Response) => {
+  const accountsRepo = AppDataSource.getRepository(AccountEntity);
+  await accountsRepo.delete({ id: Number(req.params.accountId) });
+  res.send({});
+});
+
 export default router;
