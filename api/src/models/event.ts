@@ -1,8 +1,6 @@
 import { Dayjs } from "dayjs";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
-import { EXPENSE_TYPE_ENUM, FREQUENCY_ENUM } from "../utils/enums";
-
-
+import { EXPENSE_TYPE_ENUM, FREQUENCY_ENUM } from "../data/enums";
 
 @Entity('events')
 export class EventEntity {
@@ -26,6 +24,9 @@ export class EventEntity {
 
   @Column()
   expenseType: EXPENSE_TYPE_ENUM
+
+  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0.0, nullable: true })
+  balance: number;
 
   nextOccurrence: Dayjs
 }

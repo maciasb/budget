@@ -9,4 +9,5 @@ export const enum FREQUENCY_ENUM {
 export const enum EXPENSE_TYPE_ENUM {
   EXPENSE = 'expense',
   INCOME = 'income',
+  BALANCE = 'balance'
 }

@@ -12,7 +12,7 @@
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
-        "project": ["./tsconfig.json", "./web/tsconfig.json"]
+        "project": "**/tsconfig.json"
     },
     "plugins": [
         "react"
