@@ -12,18 +12,24 @@ router.get('/events', async (_req: Request, res: Response) => {
   res.send(events);
 });
 
-router.get('/event/:id', async (req: Request, res: Response) => {
+router.get('/events/:id', async (req: Request, res: Response) => {
   const eventsRepo = AppDataSource.getRepository(EventEntity)
   const event = await eventsRepo.findBy({ id: Number(req.params.id) });
 
   res.send(event);
 });
 
-router.post('/event', async (req: Request, res: Response) => {
-  const event = new EventEntity();  
+router.delete('/events/:eventId', async (req: Request, res: Response) => {
+  const eventsRepo = AppDataSource.getRepository(EventEntity)
+  await eventsRepo.delete({ id: Number(req.params.eventId) });
+  res.send({});
+});
 
-  // const eventRepository = AppDataSource.getRepository(EventEntity);
-  // await eventRepository.save(event);
+router.post('/events', async (req: Request, res: Response) => {
+  const eventRepository = AppDataSource.getRepository(EventEntity);
+  const event = await eventRepository.save({
+    ...req.body
+  });
 
   res.send(event);
 });

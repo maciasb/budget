@@ -12,21 +12,21 @@ import {
   DialogContentText,
   DialogTitle,
   TextField,
-} from "@mui/material";
-import { useState, useEffect } from "react";
-import { AccountModel } from "../../models/AccountModel";
-import { makeRequest } from "../../utils";
-import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "@mui/icons-material/Delete";
+} from '@mui/material';
+import { useState, useEffect } from 'react';
+import { AccountModel } from '../../models/AccountModel';
+import { makeRequest } from '../../utils';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function Accounts() {
   const [accounts, setAccounts] = useState<undefined | AccountModel[]>(
-    undefined
+    undefined,
   );
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
 
   const [newAccountFormData, setNewAccountFormData] = useState<AccountModel>({
-    name: "",
+    name: '',
     startingBalance: 0,
   });
 
@@ -36,7 +36,7 @@ function Accounts() {
 
   const closeDialog = () => {
     setDialogOpen(false);
-    setNewAccountFormData({ name: "", startingBalance: 0 });
+    setNewAccountFormData({ name: '', startingBalance: 0 });
   };
 
   const openDialog = () => {
@@ -56,9 +56,9 @@ function Accounts() {
   const submitForm = async () => {
     try {
       const data = await makeRequest<AccountModel>(
-        "/accounts",
-        "POST",
-        JSON.stringify(newAccountFormData)
+        '/accounts',
+        'POST',
+        JSON.stringify(newAccountFormData),
       );
       setAccounts([...(accounts as AccountModel[]), data]);
       closeDialog();
@@ -69,9 +69,9 @@ function Accounts() {
 
   const submitDeleteAccount = async () => {
     try {
-      await makeRequest<AccountModel>(`/accounts/${deleteAccountId}`, "DELETE");
+      await makeRequest<AccountModel>(`/accounts/${deleteAccountId}`, 'DELETE');
       setAccounts(
-        accounts?.filter((account) => account.id !== deleteAccountId)
+        accounts?.filter((account) => account.id !== deleteAccountId),
       );
       closeDeleteAccountDialog();
     } catch (error) {
@@ -88,7 +88,7 @@ function Accounts() {
 
   useEffect(() => {
     async function getAccountsData() {
-      const data = await makeRequest<AccountModel[]>("/accounts");
+      const data = await makeRequest<AccountModel[]>('/accounts');
       setAccounts(data);
     }
 
@@ -136,7 +136,7 @@ function Accounts() {
             fullWidth
             variant="outlined"
             value={newAccountFormData.name}
-            onChange={(e) => updateNewAccountFormData(e, "name")}
+            onChange={(e) => updateNewAccountFormData(e, 'name')}
           />
           <TextField
             autoFocus
@@ -147,7 +147,7 @@ function Accounts() {
             fullWidth
             variant="outlined"
             value={newAccountFormData.startingBalance}
-            onChange={(e) => updateNewAccountFormData(e, "startingBalance")}
+            onChange={(e) => updateNewAccountFormData(e, 'startingBalance')}
           />
         </DialogContent>
         <DialogActions>
@@ -162,11 +162,11 @@ function Accounts() {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ fontWeight: "bold" }}>Name</TableCell>
-              <TableCell sx={{ fontWeight: "bold" }}>
+              <TableCell sx={{ fontWeight: 'bold' }}>Name</TableCell>
+              <TableCell sx={{ fontWeight: 'bold' }}>
                 Starting Balance
               </TableCell>
-              <TableCell sx={{ fontWeight: "bold" }}></TableCell>
+              <TableCell sx={{ fontWeight: 'bold' }}></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -186,7 +186,7 @@ function Accounts() {
                   </Button>
                 </TableCell>
               </TableRow>
-            ))}{" "}
+            ))}{' '}
           </TableBody>
         </Table>
       )}

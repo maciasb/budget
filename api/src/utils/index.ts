@@ -37,6 +37,14 @@ export function GetFirstOccurrence(event: EventEntity, fromDate: Dayjs): Dayjs {
       }
       break;
     }
+    case FREQUENCY_ENUM.YEARLY: {
+      if (dayjs(event.startDate).isAfter(currentDate)) {
+        newDate = dayjs(event.startDate);
+      } else {
+        newDate = currentDate.month(dayjs(event.startDate).month()).day(event.dayOfMonth);
+      }
+      break;
+    }
     default: {
       newDate = currentDate;
       break;
@@ -66,6 +74,10 @@ export function GetNextOccurrence(event: EventEntity, mostRecentOccurrence: Dayj
       } else {
         newDate = currentDate.endOf('month').startOf('date');
       }
+      break;
+    }
+    case FREQUENCY_ENUM.YEARLY: {      
+      newDate = currentDate.add(1, 'year')
       break;
     }
     default: {

@@ -18,6 +18,7 @@
         "react"
     ],
     "rules": {
+        "quotes": [2, "single", { "avoidEscape": true }],
         "@typescript-eslint/semi": "off",
         "@typescript-eslint/no-explicit-any": "off"
     }

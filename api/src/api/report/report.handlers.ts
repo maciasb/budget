@@ -65,13 +65,10 @@ export const BuildReport = async (req: Request, res: Response) => {
         // Revolving accounts will be paid up to the open balance
         // before dropping off
         if (event.id in balances) {
-          console.log(`${currentDate} ${event.id} ${balances[event.id]} ${amount} ${balances[event.id] < amount}`)
           if (Number(balances[event.id]) < amount) {
-            console.log('partial');
             amount = balances[event.id];
             balances[event.id] = 0;
           } else {
-            console.log('full');
             balances[event.id] = parseFloat((balances[event.id] - event.amount).toFixed(2))
           }
         }

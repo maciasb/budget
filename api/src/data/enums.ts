@@ -3,7 +3,8 @@ export const enum FREQUENCY_ENUM {
   WEEKLY = 'weekly',
   BI_WEEKLY = 'biweekly',
   MONTHLY = 'monthly',
-  TWICE_MONTHLY = 'twicemonthly'
+  TWICE_MONTHLY = 'twicemonthly',
+  YEARLY = 'yearly',
 }
 
 export const enum EXPENSE_TYPE_ENUM {
